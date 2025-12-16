@@ -24,6 +24,10 @@ body {
   @apply text-xs text-slate-400 mt-4 leading-relaxed;
 }
 
+.reel-container {
+  height: 160px;
+}
+
 .reel-track {
   display: flex;
   flex-direction: column;
@@ -76,5 +80,43 @@ body {
   }
   100% {
     transform: translateY(-50%);
+  }
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  .reel-container {
+    height: 120px;
+  }
+
+  .reel-cell {
+    min-height: 100px;
+    height: 100px;
+    font-size: 2.5rem;
+  }
+
+  .reel-cell-final {
+    font-size: 3rem;
+  }
+
+  .reel-track {
+    gap: 0.25rem;
+    padding: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .reel-container {
+    height: 100px;
+  }
+
+  .reel-cell {
+    min-height: 90px;
+    height: 90px;
+    font-size: 2rem;
+  }
+
+  .reel-cell-final {
+    font-size: 2.25rem;
   }
 }

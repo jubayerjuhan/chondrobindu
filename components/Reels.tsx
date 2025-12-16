@@ -11,14 +11,13 @@ export function Reels({ reels, spinning, win }: Props) {
   const display = reels.length === 3 ? reels : SYMBOLS.slice(0, 3).map((s) => s.key);
   const loopSymbols = [...SYMBOLS.map((s) => s.key), ...SYMBOLS.map((s) => s.key)];
   return (
-    <div className="grid grid-cols-3 gap-4 bg-slate-900/60 border border-slate-800 rounded-2xl p-6 cabinet-glow">
+    <div className="grid grid-cols-3 gap-2 sm:gap-4 bg-slate-900/60 border border-slate-800 rounded-2xl p-3 sm:p-6 cabinet-glow">
       {display.map((sym, idx) => (
         <div
           key={`${sym}-${idx}`}
-          className={`relative overflow-hidden rounded-xl bg-gradient-to-b from-slate-800 to-slate-900 border-2 ${
+          className={`reel-container relative overflow-hidden rounded-xl bg-gradient-to-b from-slate-800 to-slate-900 border-2 ${
             win ? 'border-emerald-400 shadow-[0_0_20px_rgba(52,211,153,0.4)]' : 'border-slate-700/60'
           }`}
-          style={{ height: '160px' }}
         >
           <div
             className={`reel-track ${spinning ? 'reel-track-spin' : ''}`}
