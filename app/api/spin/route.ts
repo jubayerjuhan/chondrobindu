@@ -42,13 +42,24 @@ export async function POST(req: Request) {
       throw new Error('Insufficient balance');
     }
 
-    const outcome = serverSpinWithRTP(bet);
+    // Get current losing streak (default to 0 if undefined for existing users)
+    const currentLosingStreak = user.losingStreak || 0;
+
+    // Pass losing streak to spin logic
+    const outcome = serverSpinWithRTP(bet, currentLosingStreak);
     result = outcome.reels.map((r) => r.key);
     multiplier = outcome.payout.multiplier;
     win = outcome.payout.win;
 
     user.demoBalance = user.demoBalance - bet + win;
     balance = user.demoBalance;
+
+    // Update losing streak
+    if (win > 0) {
+      user.losingStreak = 0; // Reset on win
+    } else {
+      user.losingStreak = currentLosingStreak + 1; // Increment on loss
+    }
 
     const spinDoc = {
       userId: user._id,

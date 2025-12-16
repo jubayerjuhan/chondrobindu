@@ -59,12 +59,26 @@ export function calcPayout(result: SymbolDef[], bet: number) {
 // Demo-only RTP control. Resamples losing spins to approximate target RTP.
 export const RTP_TARGET = 0.92;
 
-export function serverSpinWithRTP(bet: number) {
+export function serverSpinWithRTP(bet: number, losingStreak: number = 0) {
   const trySpin = () => {
     const reels = spinOnce();
     const payout = calcPayout(reels, bet);
     return { reels, payout };
   };
+
+  // Force a win every 5 spins (when losing streak is 4)
+  const forceWin = losingStreak >= 4;
+
+  if (forceWin) {
+    // Keep spinning until we get a winning combination
+    let attempt = 0;
+    let outcome = trySpin();
+    while (outcome.payout.multiplier === 0 && attempt < 20) {
+      attempt += 1;
+      outcome = trySpin();
+    }
+    return outcome;
+  }
 
   const shouldWin = Math.random() < RTP_TARGET * 0.25; // tune weight: fewer wins than RTP target.
   let attempt = 0;

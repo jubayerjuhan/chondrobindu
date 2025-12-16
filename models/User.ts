@@ -9,6 +9,7 @@ const UserSchema = new Schema(
     lastRefillAt: { type: Date, default: null },
     isSupporter: { type: Boolean, default: false },
     supporterTheme: { type: String, default: 'default' },
+    losingStreak: { type: Number, default: 0 },
   },
   { timestamps: true }
 );
