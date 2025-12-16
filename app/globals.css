@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  background: radial-gradient(circle at 20% 20%, #0b1021, #05060f 45%);
+}
+
+body {
+  @apply bg-slate-950 text-slate-100 min-h-screen;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.btn {
+  @apply px-4 py-2 rounded-md font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.cabinet-glow {
+  box-shadow: 0 0 60px rgba(56, 189, 248, 0.25), inset 0 0 40px rgba(79, 70, 229, 0.15);
+}
+
+.disclaimer {
+  @apply text-xs text-slate-400 mt-4 leading-relaxed;
+}
+
+.reel-track {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.reel-track-spin {
+  animation: reel-scroll 0.4s linear infinite;
+}
+
+.reel-cell {
+  @apply h-10 rounded-lg bg-slate-900/60 border border-slate-700/60 flex items-center justify-center text-3xl font-bold text-slate-100;
+}
+
+.reel-cell-final {
+  @apply text-4xl shadow-inner;
+}
+
+@keyframes reel-scroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
