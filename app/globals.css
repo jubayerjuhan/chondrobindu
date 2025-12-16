@@ -27,7 +27,8 @@ body {
 .reel-track {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.5rem;
+  padding: 0.5rem;
 }
 
 .reel-track-spin {
@@ -35,11 +36,38 @@ body {
 }
 
 .reel-cell {
-  @apply h-10 rounded-lg bg-slate-900/60 border border-slate-700/60 flex items-center justify-center text-3xl font-bold text-slate-100;
+  min-height: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 4rem;
+  line-height: 1;
+  color: #e2e8f0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  user-select: none;
 }
 
 .reel-cell-final {
-  @apply text-4xl shadow-inner;
+  font-size: 5rem;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
+  border-radius: 0.75rem;
+  box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(14, 165, 233, 0.2);
+  filter: brightness(1.15);
+}
+
+.shadow-win {
+  animation: win-pulse 1s ease-in-out infinite;
+}
+
+@keyframes win-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(52, 211, 153, 0.6), inset 0 0 20px rgba(52, 211, 153, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(52, 211, 153, 0.9), inset 0 0 30px rgba(52, 211, 153, 0.4);
+  }
 }
 
 @keyframes reel-scroll {
