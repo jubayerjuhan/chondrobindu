@@ -16,13 +16,14 @@ export default async function SlotPage() {
     redirect('/auth/login?next=/slot');
   }
 
+  const userData = user as any;
   const safeUser: SlotUser = {
-    _id: user._id.toString(),
-    email: user.email,
-    name: user.name || undefined,
-    demoBalance: user.demoBalance,
-    isSupporter: user.isSupporter,
-    supporterTheme: user.supporterTheme,
+    _id: userData._id.toString(),
+    email: userData.email,
+    name: userData.name || undefined,
+    demoBalance: userData.demoBalance,
+    isSupporter: userData.isSupporter,
+    supporterTheme: userData.supporterTheme,
   };
 
   return <SlotClient user={safeUser} />;

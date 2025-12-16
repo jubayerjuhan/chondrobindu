@@ -12,7 +12,7 @@ if (!stripeSecret || !webhookSecret) {
   throw new Error('Stripe secrets missing');
 }
 
-const stripe = new Stripe(stripeSecret, { apiVersion: '2023-10-16' });
+const stripe = new Stripe(stripeSecret, { apiVersion: '2022-11-15' });
 
 export async function POST(req: Request) {
   const sig = headers().get('stripe-signature');
@@ -20,7 +20,7 @@ export async function POST(req: Request) {
   let event: Stripe.Event;
 
   try {
-    event = stripe.webhooks.constructEvent(rawBody, sig || '', webhookSecret);
+    event = stripe.webhooks.constructEvent(rawBody, sig || '', webhookSecret!);
   } catch (err: any) {
     return NextResponse.json({ error: `Webhook Error: ${err.message}` }, { status: 400 });
   }

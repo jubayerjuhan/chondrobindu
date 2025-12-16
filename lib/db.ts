@@ -23,7 +23,7 @@ if (!global.mongooseCache) {
 export async function dbConnect() {
   if (global.mongooseCache?.conn) return global.mongooseCache.conn;
   if (!global.mongooseCache?.promise) {
-    global.mongooseCache!.promise = mongoose.connect(MONGODB_URI).then((mongooseInstance) => mongooseInstance);
+    global.mongooseCache!.promise = mongoose.connect(MONGODB_URI!).then((mongooseInstance) => mongooseInstance);
   }
   global.mongooseCache!.conn = await global.mongooseCache!.promise;
   return global.mongooseCache!.conn;

@@ -16,7 +16,7 @@ if (!stripeSecret) {
   throw new Error('STRIPE_SECRET_KEY is not set');
 }
 
-const stripe = new Stripe(stripeSecret, { apiVersion: '2023-10-16' });
+const stripe = new Stripe(stripeSecret, { apiVersion: '2022-11-15' });
 
 export async function POST(req: Request) {
   const userId = await getUserIdFromSession();
